@@ -1,3 +1,5 @@
+import math
+
 class Atmosphere:
     def __init__(self, H_0 = 0, p_0 = 101325, rho_0 = 1.225, T_0 = 288.15, H_i = 11000, p_i = 22632, rho_i = 0.3639, T_i = 216.65,):
         self.n = 1.235 #[-]
