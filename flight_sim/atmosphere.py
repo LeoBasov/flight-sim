@@ -21,17 +21,17 @@ class Atmosphere:
         if H < self.H_i:
             return self.p_0*math.pow(self._inner_term_trhoposphere(H), (self.n/(self.n - 1.0)))
         else:
-            return self.p_0*self._inner_term_stratosphere(H)
+            return self.p_i*self._inner_term_stratosphere(H)
 
     def density(self, H):
         if H < self.H_i:
             return self.rho_0*math.pow(self._inner_term_trhoposphere(H), (1.0/(self.n - 1.0)))
         else:
-            return self.rho_0*self._inner_term_stratosphere(H)
+            return self.rho_i*self._inner_term_stratosphere(H)
 
     def temperature(self, H):
         if H < self.H_i:
-            return T_0*self._inner_term_trhoposphere(H)
+            return self.T_0*self._inner_term_trhoposphere(H)
         else:
             return self.T_i
 
