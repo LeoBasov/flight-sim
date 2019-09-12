@@ -49,11 +49,15 @@ def flight_model_test():
 
 def solver_test():
     initial_fuel_mass = 1500
-    solver = Solver(initial_fuel_mass)
+    dt = 1e-3
+    solver = Solver(initial_fuel_mass, dt)
+
+    solver.execute()
 
 def main():
-    atmospehere_test()
-    flight_model_test()
+    #atmospehere_test()
+    #flight_model_test()
+    solver_test()
 
 if __name__ == '__main__':
     main()
