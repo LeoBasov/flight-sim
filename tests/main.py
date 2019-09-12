@@ -39,7 +39,12 @@ def atmospehere_test():
     plt.show()
 
 def flight_model_test():
-    FlightModel()
+    fuel_mass = 1500
+    plane = FlightModel(fuel_mass)
+
+    print("Fuel mass:", plane.fuel_mass)
+    print("Dry mass:", plane.dry_mass)
+    print("Total mass:", plane.total_mass())
 
 def main():
     atmospehere_test()
