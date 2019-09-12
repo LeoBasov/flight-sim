@@ -30,4 +30,4 @@ class FlightModel:
         return (0, 0)
 
     def lift(self):
-        pass
+        return (0, 0)
