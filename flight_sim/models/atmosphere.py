@@ -1,3 +1,8 @@
+"""
+Describes the reaction of atmospheric properties to the current state
+
+"""
+
 import math
 
 class Atmosphere:
