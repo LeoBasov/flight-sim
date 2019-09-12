@@ -5,8 +5,9 @@ import sys
 sys.path.append('../.')
 
 from flight_sim.atmosphere import Atmosphere
+from flight_sim.flight_model import FlightModel
 
-def main():
+def atmospehere_test():
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -36,6 +37,13 @@ def main():
     ax[1, 1].legend()
 
     plt.show()
+
+def flight_model_test():
+    FlightModel()
+
+def main():
+    atmospehere_test()
+    flight_model_test()
 
 if __name__ == '__main__':
     main()
