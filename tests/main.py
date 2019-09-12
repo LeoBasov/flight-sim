@@ -6,6 +6,7 @@ sys.path.append('../.')
 
 from flight_sim.atmosphere import Atmosphere
 from flight_sim.flight_model import FlightModel
+from flight_sim.kinetic_solver import Solver
 
 def atmospehere_test():
     import numpy as np
@@ -45,6 +46,10 @@ def flight_model_test():
     print("Fuel mass:", plane.fuel_mass)
     print("Dry mass:", plane.dry_mass)
     print("Total mass:", plane.total_mass())
+
+def solver_test():
+    initial_fuel_mass = 1500
+    solver = Solver(initial_fuel_mass)
 
 def main():
     atmospehere_test()
