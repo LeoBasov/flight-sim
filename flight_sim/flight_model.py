@@ -9,3 +9,9 @@ class FlightModel:
 
     def thrust(self):
         return (0, 0)
+
+    def drag(self):
+        return (0, 0)
+
+    def weight(self):
+        return (0, 0)
