@@ -48,11 +48,24 @@ def flight_model_test():
     print("Total mass:", plane.total_mass())
 
 def solver_test():
+    import numpy as np
+    import matplotlib.pyplot as plt
+
     initial_fuel_mass = 1500
     dt = 1e-3
     solver = Solver(initial_fuel_mass, dt)
 
     solver.execute()
+
+    space = np.ones(len(solver.times))*100000
+
+    plt.plot(solver.times, solver.positions_y)
+    plt.plot(solver.times, space, linestyle='--')
+
+    plt.xlabel("Time [s]")
+    plt.ylabel("Height [m]")
+
+    plt.show()
 
 def main():
     #atmospehere_test()
