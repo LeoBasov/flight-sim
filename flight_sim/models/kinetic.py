@@ -3,6 +3,9 @@ This module contains classes the represent the current kinetic state of the syst
 
 """
 
+import numpy as np
+
 class KineticState:
     def __init__(self):
-        pass
+        self.position = np.zeros(2)
+        self.velocity = np.zeros(2)
