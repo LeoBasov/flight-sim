@@ -10,3 +10,5 @@ class KineticState:
         self.position = np.zeros(2)
         self.velocity = np.zeros(2)
         self.total_force = np.zeros(2)
+
+        self.angle = 0
