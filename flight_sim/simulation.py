@@ -30,11 +30,11 @@ class Simulation:
 		self.print_header()
 
 		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
-			print("ITTERATION: {}".format(self.numeric_parameters.itteration), end="\r", flush=True)
+			print("ITTERATION: {:9d} Height: {:9.3f}".format(self.numeric_parameters.itteration, self.plane.kinetic_state.position[1]), end="\r", flush=True)
 
 			self.flight_solver.execute(self.plane)
 			self.aero_solver.execute(self.plane)
-			self.kinetic_solver.execute(self.plane)
+			self.kinetic_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.numeric_parameters.advace()
 
 		print("")
@@ -78,4 +78,7 @@ class AbortCriterium:
 		if numeric_parameters.itteration > self.max_itteration:
 			return False
 		else:
-			return True
+			if plane.kinetic_state.position[1] < 0.0:
+				return False
+			else:
+				return True
