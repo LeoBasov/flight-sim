@@ -29,10 +29,16 @@ class Simulation:
 	def execute(self):
 		self.print_header()
 
-		while self.abort_criterium.passed(self.plane):
+		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
+			print("ITTERATION: {}".format(self.numeric_parameters.itteration), end="\r", flush=True)
+
 			self.flight_solver.execute(self.plane)
 			self.aero_solver.execute(self.plane)
 			self.kinetic_solver.execute(self.plane)
+			self.numeric_parameters.advace()
+
+		print("")
+		print("Done")
 
 		self.print_footer()
 
@@ -56,10 +62,20 @@ class Simulation:
 class NumericParameters:
 	def __init__(self, dt = 1.0e-3):
 		self.dt = dt
+		self.itteration = 0
+
+	def advace(self):
+		self.itteration += 1
+
+	def time(self):
+		return self.itteration*self.dt
 
 class AbortCriterium:
 	def __init__(self):
-		pass
+		self.max_itteration = 1000
 
-	def passed(self, place):
-		return False
+	def passed(self, plane, numeric_parameters):
+		if numeric_parameters.itteration > self.max_itteration:
+			return False
+		else:
+			return True
