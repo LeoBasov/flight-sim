@@ -3,6 +3,7 @@ This module contains classes the represent the current kinetic state of the syst
 
 """
 
+import math
 from . import kinetic
 
 class Plane:
@@ -21,4 +22,6 @@ class Plane:
     def fire_engine(self, dt):
         if self.fuel_mass > 0.0:
             self.fuel_mass -= self.engine_model.mass_flow*dt
-            self.kinetic_state.total_force += self.engine_model.thrust(self.kinetic_state.position, self.kinetic_state.velocity)
+            thrust = self.engine_model.thrust(self.kinetic_state.position, self.kinetic_state.velocity)
+            self.kinetic_state.total_force[0] += thrust*math.cos(self.kinetic_state.angle)
+            self.kinetic_state.total_force[1] += thrust*math.sin(self.kinetic_state.angle)

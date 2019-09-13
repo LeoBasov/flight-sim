@@ -9,15 +9,15 @@ class Aero:
     def __init__(self):
         pass
 
-    def execute(self, plane):
+    def execute(self, plane, dt):
         pass
 
 class Flight:
     def __init__(self):
         pass
 
-    def execute(self, plane):
-        pass
+    def execute(self, plane, dt):
+        plane.fire_engine(dt)
 
 class Kinetic:
     def __init__(self):
