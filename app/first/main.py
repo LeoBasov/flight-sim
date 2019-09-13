@@ -10,6 +10,7 @@ from flight_sim.simulation import NumericParameters
 from flight_sim.simulation import AbortCriterium
 from flight_sim.models.plane import Plane
 from flight_sim.models.engine import JP5_H2O2
+from flight_sim.visualizer import Visualizer
 
 def main():
 	parameters = {}
@@ -22,12 +23,15 @@ def main():
 	parameters['test_case_specifics'] = ["Simple JP5 H2O2 plane"]
 
 	sim = Simulation()
+	visualizer = Visualizer()
 
 	sim.set_up(**parameters)
 	sim.execute()
 
+	visualizer.plot_height(sim.flight_path, sim.numeric_parameters.dt, sim.numeric_parameters.itteration)
+
 def set_up_plane():
-	mass_flow = 10
+	mass_flow = 50
 	plane = Plane()
 
 	plane.dry_mass = 1000
