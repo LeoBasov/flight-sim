@@ -78,7 +78,7 @@ class NumericParameters:
 
 class AbortCriterium:
 	def __init__(self):
-		self.max_itteration = 1000
+		self.max_itteration = 1e+6
 
 	def passed(self, plane, numeric_parameters):
 		if numeric_parameters.itteration > self.max_itteration:
