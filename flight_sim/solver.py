@@ -31,6 +31,8 @@ class Kinetic:
         plane.kinetic_state.position += plane.kinetic_state.velocity*dt + 0.5*accleration*dt*dt
         plane.kinetic_state.velocity += accleration*dt
 
+        plane.kinetic_state.total_force = np.zeros(2)
+
     def calc_gravitational_force(self, plane):
         force = np.zeros(2)
         force[1] = -9.81*plane.total_mass()

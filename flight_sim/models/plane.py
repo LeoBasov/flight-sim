@@ -17,3 +17,8 @@ class Plane:
 
     def total_mass(self):
         return self.dry_mass + self.fuel_mass
+
+    def fire_engine(self, dt):
+        if self.fuel_mass > 0.0:
+            self.fuel_mass -= self.engine_model.mass_flow*dt
+            self.kinetic_state.total_force += self.engine_model.thrust(self.kinetic_state.position, self.kinetic_state.velocity)
