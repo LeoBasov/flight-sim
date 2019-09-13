@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import math
 
 sys.path.append('../../.')
 
@@ -33,6 +34,8 @@ def set_up_plane():
 	plane.fuel_mass = 2000
 
 	plane.engine_model = JP5_H2O2(mass_flow)
+
+	plane.kinetic_state.angle = 0.5*math.pi
 
 	return plane
 

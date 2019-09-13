@@ -18,6 +18,8 @@ class Simulation:
 		self.test_case_name = "PLACE HOLDER"
 		self.test_case_specifics = ["PLACE HOLDER"]
 
+		self.flight_path = []
+
 	def set_up(self, **kwargs):
 		self.numeric_parameters = kwargs['numeric_parameters']
 		self.abort_criterium = kwargs['abort_criterium']
@@ -29,12 +31,15 @@ class Simulation:
 	def execute(self):
 		self.print_header()
 
+		self.flight_path.append(self.plane.kinetic_state.position)
+
 		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
 			print("ITTERATION: {:9d} Height: {:9.3f}".format(self.numeric_parameters.itteration, self.plane.kinetic_state.position[1]), end="\r", flush=True)
 
 			self.flight_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.aero_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.kinetic_solver.execute(self.plane, self.numeric_parameters.dt)
+			self.flight_path.append(self.plane.kinetic_state.position)
 			self.numeric_parameters.advace()
 
 		print("")
