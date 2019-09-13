@@ -3,6 +3,7 @@ Main module.
 
 """
 
+import numpy as np
 from . import solver
 
 class Simulation:
@@ -31,7 +32,7 @@ class Simulation:
 	def execute(self):
 		self.print_header()
 
-		self.flight_path.append(self.plane.kinetic_state.position)
+		self.flight_path.append(np.array(self.plane.kinetic_state.position))
 
 		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
 			print("ITTERATION: {:9d} Height: {:9.3f}".format(self.numeric_parameters.itteration, self.plane.kinetic_state.position[1]), end="\r", flush=True)
@@ -39,7 +40,7 @@ class Simulation:
 			self.flight_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.aero_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.kinetic_solver.execute(self.plane, self.numeric_parameters.dt)
-			self.flight_path.append(self.plane.kinetic_state.position)
+			self.flight_path.append(np.array(self.plane.kinetic_state.position))
 			self.numeric_parameters.advace()
 
 		print("")
