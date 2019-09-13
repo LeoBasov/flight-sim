@@ -3,14 +3,16 @@ Main module.
 
 """
 
+from . import solver
+
 class Simulation:
 	def __init__(self):
 		self.numeric_parameters = None
 		self.plane = None
 
-		self.flight_solver = None
-		self.aero_solver = None
-		self.kinetic_solver = None
+		self.flight_solver = solver.Flight()
+		self.aero_solver = solver.Aero()
+		self.kinetic_solver = solver.Kinetic()
 
 		self.test_case_name = "PLACE HOLDER"
 		self.test_case_specifics = ["PLACE HOLDER"]
