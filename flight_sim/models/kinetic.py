@@ -9,3 +9,4 @@ class KineticState:
     def __init__(self):
         self.position = np.zeros(2)
         self.velocity = np.zeros(2)
+        self.total_force = np.zeros(2)

@@ -8,6 +8,7 @@ from . import solver
 class Simulation:
 	def __init__(self):
 		self.numeric_parameters = None
+		self.abort_criterium = None
 		self.plane = None
 
 		self.flight_solver = solver.Flight()
@@ -18,10 +19,21 @@ class Simulation:
 		self.test_case_specifics = ["PLACE HOLDER"]
 
 	def set_up(self, **kwargs):
-		pass
+		self.numeric_parameters = kwargs['numeric_parameters']
+		self.abort_criterium = kwargs['abort_criterium']
+		self.plane = kwargs['plane']
+
+		self.test_case_name = kwargs['test_case_name']
+		self.test_case_specifics = kwargs['test_case_specifics']
 
 	def execute(self):
 		self.print_header()
+
+		while self.abort_criterium.passed(self.plane):
+			self.flight_solver.execute(self.plane)
+			self.aero_solver.execute(self.plane)
+			self.kinetic_solver.execute(self.plane)
+
 		self.print_footer()
 
 	def print_header(self):
@@ -44,3 +56,10 @@ class Simulation:
 class NumericParameters:
 	def __init__(self, dt = 1.0e-3):
 		self.dt = dt
+
+class AbortCriterium:
+	def __init__(self):
+		pass
+
+	def passed(self, place):
+		return False
