@@ -32,11 +32,11 @@ def main():
 	visualizer.plot_height(sim.flight_path, sim.numeric_parameters.dt, sim.numeric_parameters.itteration)
 
 def set_up_plane():
-	mass_flow = 50
+	mass_flow = 30
 	plane = Plane()
 
-	plane.dry_mass = 1000
-	plane.fuel_mass = 2000
+	plane.fuel_mass = 3500
+	plane.dry_mass = (3/2)*plane.fuel_mass - plane.fuel_mass
 
 	plane.aero_model = Simple()
 	plane.engine_model = JP5_H2O2(mass_flow)
