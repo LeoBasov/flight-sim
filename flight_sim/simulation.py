@@ -66,7 +66,7 @@ class Simulation:
 		print(80*"=")
 
 class NumericParameters:
-	def __init__(self, dt = 1.0e-3):
+	def __init__(self, dt = 1.0e-2):
 		self.dt = dt
 		self.itteration = 0
 
