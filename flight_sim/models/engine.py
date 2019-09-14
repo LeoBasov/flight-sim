@@ -15,8 +15,8 @@ class Engine:
 class JP5_H2O2(Engine):
     def __init__(self, mass_flow):
         super().__init__()
-        self.ce_ground = 3168.63
-        self.ce_vacuum = 3286.35
+        self.ce_ground = 2530.98 #3168.63 whute paper
+        self.ce_vacuum = 2632.2192 #3286.35
         self.mass_flow = mass_flow
         self.atmosphere = Atmosphere()
 
