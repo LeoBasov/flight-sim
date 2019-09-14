@@ -11,6 +11,7 @@ from flight_sim.simulation import AbortCriterium
 from flight_sim.models.plane import Plane
 from flight_sim.models.engine import JP5_H2O2
 from flight_sim.visualizer import Visualizer
+from flight_sim.models.aero import Simple
 
 def main():
 	parameters = {}
@@ -37,6 +38,7 @@ def set_up_plane():
 	plane.dry_mass = 1000
 	plane.fuel_mass = 2000
 
+	plane.aero_model = Simple()
 	plane.engine_model = JP5_H2O2(mass_flow)
 
 	plane.kinetic_state.angle = 0.5*math.pi

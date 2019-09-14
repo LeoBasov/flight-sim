@@ -12,3 +12,10 @@ class Aero:
 
     def get_drag_coefficient(self, kinetic_state):
         return 0.0
+
+class Simple(Aero):
+    def __init__(self):
+        super().__init__()
+
+    def get_drag_coefficient(self, kinetic_state):
+        return 0.05
