@@ -36,7 +36,7 @@ def set_up_plane():
 	plane = Plane()
 
 	plane.fuel_mass = 3500
-	plane.dry_mass = (3/2)*plane.fuel_mass - plane.fuel_mass
+	plane.dry_mass = (1/2)*plane.fuel_mass
 
 	plane.aero_model = Simple()
 	plane.engine_model = JP5_H2O2(mass_flow)
