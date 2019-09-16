@@ -1,21 +1,33 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
 
 class Visualizer:
-    def __init__(self):
-        pass
+	def __init__(self):
+		pass
 
-    def plot_height(self, flight_path, dt, itterations):
-        time = np.linspace(0, dt*itterations, itterations + 1)
-        height = []
-        space = 100000*np.ones(len(flight_path))
+	def plot_height(self, kinetic_state_file_name, dt, itterations):
+		karman_line = 100000 #[m]
+		time = np.linspace(0, dt*itterations, itterations + 1)
+		height = []
+		space = karman_line*np.ones(itterations + 1)
+		skip = True
 
-        for position in flight_path:
-            height.append(position[1])
+		with open(kinetic_state_file_name) as file:
+			reader = csv.reader(file, delimiter=',')
 
-        plt.plot(time, height, label = 'Flight height')
-        plt.plot(time, space, label = 'Space', linestyle =  '--')
-        plt.legend()
-        plt.xlabel('Flight time [s]')
-        plt.ylabel('Altitude [m]')
-        plt.show()
+			for row in reader:
+				if skip:
+					skip = False
+				else:
+					height.append(float(row[2]))
+
+		time = np.linspace(0, dt*itterations, len(height))
+		space = karman_line*np.ones(len(height))
+
+		plt.plot(time, height, label = 'Flight height')
+		plt.plot(time, space, label = 'Karman Line', linestyle =  '--')
+		plt.legend()
+		plt.xlabel('Flight time [s]')
+		plt.ylabel('Altitude [m]')
+		plt.show()

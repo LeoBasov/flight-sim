@@ -29,7 +29,7 @@ def main():
 	sim.set_up(**parameters)
 	sim.execute()
 
-	visualizer.plot_height(sim.flight_path, sim.numeric_parameters.dt, sim.numeric_parameters.itteration)
+	visualizer.plot_height(sim.writer.kinetic_state_file_name, sim.numeric_parameters.dt, sim.numeric_parameters.itteration)
 
 def set_up_plane():
 	mass_flow = 30

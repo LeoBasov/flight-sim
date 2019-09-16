@@ -20,8 +20,6 @@ class Simulation:
 		self.test_case_name = "PLACE HOLDER"
 		self.test_case_specifics = ["PLACE HOLDER"]
 
-		self.flight_path = []
-
 		self.writer = wrt.Writer()
 
 	def set_up(self, **kwargs):
@@ -35,7 +33,6 @@ class Simulation:
 	def execute(self):
 		self.print_header()
 
-		self.flight_path.append(np.array(self.plane.kinetic_state.position))
 		self.writer.write_to_file(self.plane.kinetic_state, self.numeric_parameters.dt*self.numeric_parameters.itteration)
 
 		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
@@ -46,7 +43,6 @@ class Simulation:
 			self.kinetic_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.numeric_parameters.advace()
 
-			self.flight_path.append(np.array(self.plane.kinetic_state.position))
 			self.writer.write_to_file(self.plane.kinetic_state, self.numeric_parameters.dt*self.numeric_parameters.itteration)
 
 		print("")
