@@ -17,7 +17,7 @@ from flight_sim.models.aero import Simple
 def main():
 	visualizer = Visualizer()
 
-	fuel_masses = np.linspace(3000, 4000, 2)
+	fuel_masses = np.linspace(3500, 3700, 5)
 	mass_flow = 30
 	file_names_dt_itter = []
 
