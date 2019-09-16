@@ -31,3 +31,31 @@ class Visualizer:
 		plt.xlabel('Flight time [s]')
 		plt.ylabel('Altitude [m]')
 		plt.show()
+
+	def plot_heights(self, file_names_dt_itter, fuel_masses):
+		times_heights = []
+
+		for tuple in file_names_dt_itter:
+			height = []
+
+			with open(tuple[0]) as file:
+				reader = csv.reader(file, delimiter=',')
+				skip = True
+
+				for row in reader:
+					if skip:
+						skip = False
+					else:
+						height.append(float(row[2]))
+
+			time = np.linspace(0, tuple[1]*tuple[2], len(height))
+
+			times_heights.append([time, height])
+
+		for i in range(len(times_heights)):
+			plt.plot(times_heights[i][0], times_heights[i][1], label = 'Fule mass: ' + str(fuel_masses[i]) + 'kg')
+
+		plt.legend()
+		plt.xlabel('Flight time [s]')
+		plt.ylabel('Altitude [m]')
+		plt.show()
