@@ -34,6 +34,8 @@ class Visualizer:
 
 	def plot_heights(self, file_names_dt_itter, fuel_masses):
 		times_heights = []
+		karman_line = 100000 #[m]
+		max_len = 0
 
 		for tuple in file_names_dt_itter:
 			height = []
@@ -54,6 +56,13 @@ class Visualizer:
 
 		for i in range(len(times_heights)):
 			plt.plot(times_heights[i][0], times_heights[i][1], label = 'Fule mass: ' + str(fuel_masses[i]) + 'kg')
+
+			if max_len > len(times_heights[i][0]):
+				max_len = len(times_heights[i][0])
+
+		space = karman_line*np.ones(len(height))
+		
+		plt.plot(time, space, label = 'Karman Line', linestyle =  '--')
 
 		plt.legend()
 		plt.xlabel('Flight time [s]')
