@@ -5,6 +5,7 @@ Main module.
 
 import numpy as np
 from . import solver
+from . import writer as wrt
 
 class Simulation:
 	def __init__(self):
@@ -21,6 +22,8 @@ class Simulation:
 
 		self.flight_path = []
 
+		self.writer = wrt.Writer()
+
 	def set_up(self, **kwargs):
 		self.numeric_parameters = kwargs['numeric_parameters']
 		self.abort_criterium = kwargs['abort_criterium']
@@ -33,6 +36,7 @@ class Simulation:
 		self.print_header()
 
 		self.flight_path.append(np.array(self.plane.kinetic_state.position))
+		self.writer.write_to_file(self.plane.kinetic_state, self.numeric_parameters.dt*self.numeric_parameters.itteration)
 
 		while self.abort_criterium.passed(self.plane, self.numeric_parameters):
 			print("ITTERATION: {:9d} Height: {:9.3f}".format(self.numeric_parameters.itteration, self.plane.kinetic_state.position[1]), end="\r", flush=True)
@@ -40,8 +44,10 @@ class Simulation:
 			self.flight_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.aero_solver.execute(self.plane, self.numeric_parameters.dt)
 			self.kinetic_solver.execute(self.plane, self.numeric_parameters.dt)
-			self.flight_path.append(np.array(self.plane.kinetic_state.position))
 			self.numeric_parameters.advace()
+
+			self.flight_path.append(np.array(self.plane.kinetic_state.position))
+			self.writer.write_to_file(self.plane.kinetic_state, self.numeric_parameters.dt*self.numeric_parameters.itteration)
 
 		print("")
 		print("Done")
