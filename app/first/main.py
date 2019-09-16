@@ -15,14 +15,6 @@ from flight_sim.visualizer import Visualizer
 from flight_sim.models.aero import Simple
 
 def main():
-	parameters = {}
-
-	parameters["numeric_parameters"] = NumericParameters()
-	parameters["abort_criterium"] = AbortCriterium()
-
-	parameters['test_case_name'] = "FIRST TEST"
-	parameters['test_case_specifics'] = ["Simple JP5 H2O2 plane"]
-
 	visualizer = Visualizer()
 
 	fuel_masses = np.linspace(3000, 4000, 2)
@@ -30,7 +22,15 @@ def main():
 	file_names_dt_itter = []
 
 	for fuel_mass in fuel_masses:
+		parameters = {}
+
+		parameters["numeric_parameters"] = NumericParameters()
+		parameters["abort_criterium"] = AbortCriterium()
 		parameters["plane"] = set_up_JP5_H2O2_plane(mass_flow, fuel_mass)
+
+		parameters['test_case_name'] = "FIRST TEST"
+		parameters['test_case_specifics'] = ["Simple JP5 H2O2 plane"]
+
 		sim = Simulation()
 
 		sim.set_up(**parameters)
@@ -43,7 +43,7 @@ def main():
 def set_up_JP5_H2O2_plane(mass_flow, fuel_mass):
 	plane = Plane()
 
-	plane.fuel_mass = 3500
+	plane.fuel_mass = fuel_mass
 	plane.dry_mass = (1/2)*plane.fuel_mass
 
 	plane.aero_model = Simple()
