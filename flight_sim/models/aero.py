@@ -21,7 +21,7 @@ class Simple(Aero):
         super().__init__()
 
     def drag_coefficient(self, kinetic_state):
-        return 0.15
+        return 0.167
 
     def ref_area(self, kinetic_state):
         return 10.0

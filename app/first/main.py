@@ -11,6 +11,7 @@ from flight_sim.simulation import NumericParameters
 from flight_sim.simulation import AbortCriterium
 from flight_sim.models.plane import Plane
 from flight_sim.models.engine import JP5_H2O2
+from flight_sim.models.engine import HTPB_N2O
 from flight_sim.visualizer import Visualizer
 from flight_sim.models.aero import Simple
 
@@ -28,7 +29,7 @@ def main():
 
 		parameters["numeric_parameters"] = NumericParameters()
 		parameters["abort_criterium"] = AbortCriterium()
-		parameters["plane"] = set_up_JP5_H2O2_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction)
+		parameters["plane"] = set_up_HTPB_N2O_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction)
 
 		parameters['test_case_name'] = "FIRST TEST"
 		parameters['test_case_specifics'] = ["Simple JP5 H2O2 plane"]
@@ -42,7 +43,7 @@ def main():
 
 	visualizer.plot_heights(file_names_dt_itter, fuel_mass_fractions)
 
-def set_up_JP5_H2O2_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction):
+def set_up_HTPB_N2O_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction):
 	total_mass = cargo_mass/(1.0 - empty_mass_frac - fuel_mass_fraction)
 	plane = Plane()
 
@@ -50,7 +51,7 @@ def set_up_JP5_H2O2_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_frac
 	plane.dry_mass  = total_mass*empty_mass_frac
 
 	plane.aero_model = Simple()
-	plane.engine_model = JP5_H2O2(mass_flow)
+	plane.engine_model = HTPB_N2O(mass_flow)
 
 	plane.kinetic_state.angle = 0.5*math.pi
 
