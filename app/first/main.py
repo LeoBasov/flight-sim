@@ -17,16 +17,18 @@ from flight_sim.models.aero import Simple
 def main():
 	visualizer = Visualizer()
 
-	fuel_masses = np.linspace(3500, 3700, 5)
-	mass_flow = 30
+	cargo_mass = 300
+	fuel_mass_fractions = [0.65]
+	empty_mass_frac = 0.32
+	mass_flow = 80
 	file_names_dt_itter = []
 
-	for fuel_mass in fuel_masses:
+	for fuel_mass_fraction in fuel_mass_fractions:
 		parameters = {}
 
 		parameters["numeric_parameters"] = NumericParameters()
 		parameters["abort_criterium"] = AbortCriterium()
-		parameters["plane"] = set_up_JP5_H2O2_plane(mass_flow, fuel_mass)
+		parameters["plane"] = set_up_JP5_H2O2_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction)
 
 		parameters['test_case_name'] = "FIRST TEST"
 		parameters['test_case_specifics'] = ["Simple JP5 H2O2 plane"]
@@ -38,13 +40,14 @@ def main():
 
 		file_names_dt_itter.append([sim.writer.kinetic_state_file_name, sim.numeric_parameters.dt, sim.numeric_parameters.itteration])
 
-	visualizer.plot_heights(file_names_dt_itter, fuel_masses)
+	visualizer.plot_heights(file_names_dt_itter, fuel_mass_fractions)
 
-def set_up_JP5_H2O2_plane(mass_flow, fuel_mass):
+def set_up_JP5_H2O2_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_fraction):
+	total_mass = cargo_mass/(1.0 - empty_mass_frac - fuel_mass_fraction)
 	plane = Plane()
 
-	plane.fuel_mass = fuel_mass
-	plane.dry_mass = (1/2)*plane.fuel_mass
+	plane.fuel_mass = total_mass*fuel_mass_fraction
+	plane.dry_mass  = total_mass*empty_mass_frac
 
 	plane.aero_model = Simple()
 	plane.engine_model = JP5_H2O2(mass_flow)
