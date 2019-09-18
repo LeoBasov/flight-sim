@@ -42,6 +42,8 @@ def main():
     axs[1][1].set_xlabel('Fuel mass fraction [-]')
     axs[1][1].set_ylabel('Burn time [s]')
 
+    fig.suptitle('PAX = {} kg, c_e = {} m/s, T/W = {}, empty mass fraction = {}'.format(PAX, ce, thrust_to_weight, empty_mass_frac))
+
     plt.show()
 
     print(fuel_fractions[-1])
