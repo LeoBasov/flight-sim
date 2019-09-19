@@ -42,7 +42,9 @@ class Simple(Aero):
         return cd
 
     def calc_cd_wave(self, ref_radius, ref_length):
-        return 4.0*math.pi*math.pi*ref_radius*ref_radius/(ref_length*ref_length)
+        #return 4.0*math.pi*math.pi*ref_radius*ref_radius/(ref_length*ref_length) formula is wrong
+
+        return 0.1538
 
     def calc_cf(self, mach_number, ref_length):
         k_factor = 0.7e-5 #for smooth modlede composites
