@@ -17,9 +17,6 @@ class Aero:
     def drag_coefficient(self, kinetic_state):
         return 0.0
 
-    def ref_area(self, kinetic_state):
-        return 0.0
-
 class Simple(Aero):
     def __init__(self, ref_radius, ref_length, ref_drag_area, wetted_area):
         super().__init__()
@@ -55,6 +52,3 @@ class Simple(Aero):
 
     def clac_Re_cutoff(self, mach_number, ref_length, k_factor):
         return math.pow(ref_length/k_factor, 1.053)*math.pow(mach_number, 1.16)
-
-    def ref_area(self, kinetic_state):
-        return 10.0

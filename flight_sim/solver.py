@@ -12,7 +12,7 @@ class Aero:
         self.atmosphere = Atmosphere()
 
     def execute(self, plane, dt):
-        ref_area = plane.aero_model.ref_area(plane.kinetic_state)
+        ref_area = plane.aero_model.ref_drag_area
         velocity = np.linalg.norm(plane.kinetic_state.velocity)
         rho = self.atmosphere.density(plane.kinetic_state.position[1])
         lift = np.zeros(2)
