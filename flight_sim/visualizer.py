@@ -32,7 +32,7 @@ class Visualizer:
 		plt.ylabel('Altitude [m]')
 		plt.show()
 
-	def plot_heights(self, file_names_dt_itter, fuel_masses):
+	def plot_heights(self, file_names_dt_itter, fuel_mass_fractions):
 		times_heights = []
 		karman_line = 100000 #[m]
 		max_len = 0
@@ -55,13 +55,13 @@ class Visualizer:
 			times_heights.append([time, height])
 
 		for i in range(len(times_heights)):
-			plt.plot(times_heights[i][0], times_heights[i][1], label = 'Fule mass: ' + str(fuel_masses[i]) + 'kg')
+			plt.plot(times_heights[i][0], times_heights[i][1], label = 'Fuel mass fraction: ' + str(fuel_mass_fractions[i]))
 
 			if max_len > len(times_heights[i][0]):
 				max_len = len(times_heights[i][0])
 
 		space = karman_line*np.ones(len(height))
-		
+
 		plt.plot(time, space, label = 'Karman Line', linestyle =  '--')
 
 		plt.legend()
