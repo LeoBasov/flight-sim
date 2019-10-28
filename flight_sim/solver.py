@@ -6,6 +6,7 @@ Solver module.
 import math
 import numpy as np
 from .models.atmosphere import Atmosphere
+from .models.flight import Pilot
 
 class Aero:
     def __init__(self):
@@ -34,10 +35,10 @@ class Aero:
 
 class Flight:
     def __init__(self):
-        pass
+        self.pilot = Pilot()
 
     def execute(self, plane, dt):
-        plane.fire_engine(dt)
+        self.pilot.fly(plane, dt)
 
 class Kinetic:
     def __init__(self):
