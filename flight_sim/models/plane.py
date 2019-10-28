@@ -21,7 +21,12 @@ class Plane:
 
     def fire_engine(self, dt):
         if self.fuel_mass > 0.0:
-            self.fuel_mass -= self.engine_model.mass_flow*dt
+            burned_fuel = self.engine_model.mass_flow*dt
             thrust = self.engine_model.thrust(self.kinetic_state.position, self.kinetic_state.velocity)
             self.kinetic_state.total_force[0] += thrust*math.cos(self.kinetic_state.angle)
             self.kinetic_state.total_force[1] += thrust*math.sin(self.kinetic_state.angle)
+
+            if burned_fuel <= self.fuel_mass:
+                self.fuel_mass -= burned_fuel    
+            else:
+                self.fuel_mass = 0.0
