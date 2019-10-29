@@ -18,13 +18,14 @@ class Aero:
         return 0.0
 
 class Simple(Aero):
-    def __init__(self, ref_radius, ref_length, ref_drag_area, wetted_area):
+    def __init__(self, ref_radius, ref_length, ref_drag_area, ref_lift_area, wetted_area):
         super().__init__()
         self.atmosphere = atmosphere.Atmosphere()
 
         self.ref_radius = ref_radius
         self.ref_length = ref_length
         self.ref_drag_area = ref_drag_area
+        self.ref_lift_area = ref_lift_area
         self.wetted_area = wetted_area
 
         self.cd_wave = self.calc_cd_wave(self.ref_radius, self.ref_length)

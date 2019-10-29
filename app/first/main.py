@@ -49,12 +49,13 @@ def set_up_HTPB_N2O_plane(mass_flow, cargo_mass, empty_mass_frac, fuel_mass_frac
 	ref_radius = 2.2
 	ref_length = 18
 	ref_drag_area = 5.8
+	ref_lift_area = 19.8
 	wetted_area = 47
 
 	plane.fuel_mass = total_mass*fuel_mass_fraction
 	plane.dry_mass  = total_mass*empty_mass_frac
 
-	plane.aero_model = Simple(ref_radius = ref_radius, ref_length = ref_length, ref_drag_area = ref_drag_area, wetted_area = wetted_area)
+	plane.aero_model = Simple(ref_radius = ref_radius, ref_length = ref_length, ref_drag_area = ref_drag_area, ref_lift_area = ref_lift_area, wetted_area = wetted_area)
 	plane.engine_model = HTPB_N2O(mass_flow)
 
 	plane.kinetic_state.angle = 0.5*math.pi
