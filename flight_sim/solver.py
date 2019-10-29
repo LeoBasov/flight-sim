@@ -13,7 +13,8 @@ class Aero:
         self.atmosphere = Atmosphere()
 
     def execute(self, plane, dt):
-        ref_area = plane.aero_model.ref_drag_area
+        drag_ref_area = plane.aero_model.ref_drag_area
+        lift_ref_area = plane.aero_model.ref_drag_area
         velocity = np.linalg.norm(plane.kinetic_state.velocity)
         rho = self.atmosphere.density(plane.kinetic_state.position[1])
         lift = np.zeros(2)
@@ -26,10 +27,10 @@ class Aero:
         else:
             flight_vec = np.zeros(2)
 
-        lift[0] = 0.5*c_l*rho*velocity*velocity*ref_area*math.cos(plane.kinetic_state.angle)
-        lift[1] = 0.5*c_l*rho*velocity*velocity*ref_area*math.sin(plane.kinetic_state.angle)
+        lift[0] = 0.5*c_l*rho*velocity*velocity*lift_ref_area*math.cos(plane.kinetic_state.angle)
+        lift[1] = 0.5*c_l*rho*velocity*velocity*lift_ref_area*math.sin(plane.kinetic_state.angle)
 
-        drag = -1.0*0.5*c_d*rho*velocity*velocity*ref_area*flight_vec
+        drag = -1.0*0.5*c_d*rho*velocity*velocity*drag_ref_area*flight_vec
 
         plane.kinetic_state.total_force += lift + drag
 
