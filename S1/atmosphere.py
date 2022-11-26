@@ -41,7 +41,7 @@ class Atmosphere:
             return self.T_i
 
     def a(self, H):
-        return math.sqrt(self.K*self.R*self.temperature(H))
+        return math.sqrt(self.K*self.R*self.T(H))
 
     def _inner_term_trhoposphere(self, H):
         return 1.0 - ((self.n - 1.0)/self.n)*(self.g/(self.R*self.T_0))*(H - self.H_0)
