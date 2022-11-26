@@ -58,10 +58,14 @@ if __name__ == '__main__':
     xref = c_e**2 / g
     v_TO = 43
     
+    # values open to optimization
+    #----------------------------
     T = 2
     m_f = 0.6
-    C_D = 0.005
+    C_D = 0.005 # here I need a model as C_D = fn(dotx)
     C_L_TO = 0.7
+    #----------------------------
+    
     c_TO = c_e / v_TO
     mu = 1
     
