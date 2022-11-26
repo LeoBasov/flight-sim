@@ -1,3 +1,7 @@
+"""
+dimensionless kinetics for rocket propelled ascend using constant thrust
+"""
+
 import math
 import numpy as np
 import matplotlib.pyplot as plt
@@ -87,11 +91,20 @@ if __name__ == '__main__':
     t = np.array(t)*(T/m_f)
         
     plt.plot(t, x)
-    plt.plot(t, dotx, '--')
-    #plt.plot(t, ddotx, '.')
+    plt.xlabel("$t \;/\; t_{burn}$")
+    plt.ylabel("$x \;/\; H_K$")
     
-    plt.xlabel("t / t_burn")
+    plt.show()
     
-    plt.legend(["x / H_k", "Ma"])
+    plt.plot(t, dotx)
+    plt.xlabel("$t \;/\; t_{burn}$")
+    plt.ylabel("$Ma$")
+    
+    plt.show()
+    
+
+    plt.plot(t, ddotx, '.', markersize=1)
+    plt.xlabel("$t \;/\; t_{burn}$")
+    plt.ylabel("$\ddot{x} \;/\; g$")
     
     plt.show()
