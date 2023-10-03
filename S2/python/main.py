@@ -8,6 +8,8 @@ atm = Atmosphere()
 
 def plot_x(sol, params):
     plt.plot(sol.t / params.t_meco, sol.y[0] * params.x_ref / 100000.0)
+    plt.xlabel("$t$ / $t_{\mathrm{MECO}}$")
+    plt.ylabel("$x$ / $x_{\mathrm{Karman}}$")
     plt.show()
 
 def plot_dot_x(sol, params):
@@ -18,6 +20,8 @@ def plot_dot_x(sol, params):
         Ma.append(sol.y[1][i] * params.c0 / atm.speed_of_sound(H))
     
     plt.plot(sol.t / params.t_meco, Ma)
+    plt.xlabel("$t$ / $t_{\mathrm{MECO}}$")
+    plt.ylabel("$\mathrm{Ma}$")
     plt.show()
 
 if __name__ == '__main__':
