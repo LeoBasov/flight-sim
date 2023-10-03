@@ -1,0 +1,68 @@
+\section{Basic Theory}
+
+\subsection{Basic}
+Base equation of motion
+\begin{equation}
+	m \ddot{x} = T - D - G
+\end{equation}
+where we have the thrust $T$
+\begin{equation}
+	T = c_e \dot{m}
+\end{equation}
+with $c_e$ being the exhaust velocity of the engine and $\dot{m}$ being the mass flow fo the engine.
+The drag $D$
+\begin{equation}
+	D = \frac{1}{2} C_D \rho \dot{x}^2 A
+\end{equation}
+with $\rho$ being the density and $A$ being the projected wing area.
+And the gravity force $G = m g$.
+Thus we have
+\begin{equation}
+	m \ddot{x} = c_e \dot{m} - \frac{1}{2} C_D \rho \dot{x}^2 A - m g.
+\end{equation}
+
+\subsection{Dimensionless Values}
+If we divide the equation by $m g$ and introduce the dimensionless acceleration $\ddot{\tilde{x}} = \frac{\ddot{x}}{g}$ we get
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{T}{m g} - \frac{1}{2}\frac{C_D \rho \dot{x}^2 A}{m g} - 1.
+\end{equation}
+The current mass $m$ can we written as $m = m_0 - t \dot{m}$ which is the takeoff mass  minus the mass flow times passed time and thus we get
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{T}{(m_0 - t \dot{m}) g} - \frac{1}{2}\frac{C_D \rho \dot{x}^2 A}{(m_0 - t \dot{m}) g} - 1.
+\end{equation}
+We can now introduce a dimensionless thrust per weight ration $\tilde{T} = T / (m_0 g)$ and write
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{\tilde{T}}{1 - t \frac{\dot{m}}{m_0}} - \frac{1}{2}\frac{C_D \rho \dot{x}^2 A}{(m_0 - t \dot{m}) g} - 1.
+\end{equation}
+We can not introduce a dimenless time as $t = \tilde{t} \frac{c_0}{g}$ were $c_0$ is the speed of sound at see level at normal conditions, replace the mass flow as $\dot{m} = \frac{T}{c_e}$, and write
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{\tilde{T}}{1 - \tilde{t} \frac{c_0}{g} \frac{T}{c_e m_0}} - \frac{1}{2}\frac{C_D \rho \dot{x}^2 A}{(m_0 - t \dot{m}) g} - 1.
+\end{equation}
+Again using the definition of $\tilde{T}$ and introducing an exit mach number for the engine as $Ma_{e} = \frac{c_e}{c_e}$ we can write 
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{\tilde{T}}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} - \frac{1}{2}\frac{C_D \rho \dot{x}^2 A}{\left(1 - \tilde{t} \frac{\tilde{T}}{Ma_e}\right) m_0 g} - 1.
+\end{equation}
+We can now use the consideration of the max landing speed to write
+\begin{equation}
+	W_L = \frac{1}{2} C_{A, L} \rho_L \dot{x}_L^2 A 
+\end{equation}
+were $\rho_L = \rho_0$, $C_{A, L}$ is the landing lift coefficient, $\dot{x}_L^2$ the max landing velocity, and $W_L = g(m_0 - m_f)$ were $m_f$ is the fuel mass burned during ascend (total fuel mass). With this we can write
+\begin{equation}
+	A = 2 \frac{g(m_0 - m_f)}{C_{A, L} \rho_0 \dot{x}_L^2}.
+\end{equation}
+Substituting in equation above an introducing the dimension less density $\tilde{\rho} = \rho/\rho_0$, and the fuel mass fraction $\tilde{m}_f = m_f / m_0$ we can write
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{\tilde{T}}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} - \tilde{\rho} \frac{C_D}{C_{A, L}} \frac{\dot{x}^2}{\dot{x}_L^2} \frac{1 - \tilde{m}_f}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} - 1.
+\end{equation}
+To scale velocity with acceleration the dimensionless quantities $\dot{\tilde{x}} = \frac{\dot{x}}{c_0}$ and $Ma_L = \frac{\dot{x}_L}{c_0}$ are introduced and we can finally write
+\begin{equation}
+	\ddot{\tilde{x}} = \frac{\tilde{T}}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} - \tilde{\rho} \frac{\dot{\tilde{x}}^2}{Ma_L^2} \frac{C_D}{C_{A, L}} \frac{1 - \tilde{m}_f}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} - 1.
+\end{equation}
+As the terms are equal as
+\begin{equation}
+	\frac{1 - \tilde{m}_f}{1 - \tilde{t} \frac{\tilde{T}}{Ma_e}} = \frac{m_0 - m_f}{m_0 - t \dot{m}}
+\end{equation}
+it means the the main engine cut off time $t_{meco}$ is
+\begin{equation}
+t_{meco} = \frac{m_f}{\dot{m}} \rightarrow \tilde{t}_{meco} = \tilde{m}_f\frac{Ma_e}{\tilde{T}}
+\end{equation}
