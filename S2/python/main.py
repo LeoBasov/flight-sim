@@ -8,6 +8,8 @@ atm = Atmosphere()
 
 def plot_x(sol, params):
     plt.plot(sol.t / params.t_meco, sol.y[0] * params.x_ref / 100000.0)
+    plt.axhline(y=1, color="black", linestyle="--")
+    plt.axvline(x=1, color="black", linestyle="--")
     plt.xlabel("$t$ / $t_{\mathrm{MECO}}$")
     plt.ylabel("$x$ / $x_{\mathrm{Karman}}$")
     plt.show()
@@ -20,6 +22,7 @@ def plot_dot_x(sol, params):
         Ma.append(sol.y[1][i] * params.c0 / atm.speed_of_sound(H))
     
     plt.plot(sol.t / params.t_meco, Ma)
+    plt.axvline(x=1, color="black", linestyle="--")
     plt.xlabel("$t$ / $t_{\mathrm{MECO}}$")
     plt.ylabel("$\mathrm{Ma}$")
     plt.show()
@@ -31,9 +34,9 @@ if __name__ == '__main__':
     y0 = (0.0, 0.0)
     
     params.T = 2.0
-    params.Ma_ce = 8.16
-    params.Ma_L = 0.16
-    params.CD = 0.05
+    params.Ma_ce = 2800.0 / atm.speed_of_sound(0.0)
+    params.Ma_L = 100.0 / atm.speed_of_sound(0.0)
+    params.CD = 0.025 # subsonic
     params.CA_L = 1.5
     params.mf = 0.5
     

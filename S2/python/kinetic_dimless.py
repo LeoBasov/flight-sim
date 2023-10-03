@@ -33,7 +33,10 @@ def _calc_rho(t, y, params):
     return atm.density(H) / rho_ref
 
 def _calc_CD(t, y, params):
-    return params.CD
+    if y[1] < 1.0:
+        return params.CD
+    else:
+        return 2.0 * params.CD
 
 def _calc_T_by_W(t, y, params):
     if t <= params.t_meco:
