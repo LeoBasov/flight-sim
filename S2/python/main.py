@@ -21,10 +21,13 @@ def plot_dot_x(sol, params):
         H = sol.y[0][i] * params.x_ref
         Ma.append(sol.y[1][i] * params.c0 / atm.speed_of_sound(H))
     
-    plt.plot(sol.t / params.t_meco, Ma)
+    plt.plot(sol.t / params.t_meco, sol.y[1])
+    plt.plot(sol.t / params.t_meco, Ma, "-.")
+    plt.axhline(y=1, color="black", linestyle="--")
     plt.axvline(x=1, color="black", linestyle="--")
     plt.xlabel("$t$ / $t_{\mathrm{MECO}}$")
     plt.ylabel("$\mathrm{Ma}$")
+    plt.legend(["$\dot{x}/\sqrt{\gamma R T_0}$", "$\dot{x}/\sqrt{\gamma R T(x)}$"])
     plt.show()
 
 if __name__ == '__main__':
